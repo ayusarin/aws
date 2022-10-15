@@ -139,7 +139,7 @@ resource "aws_route_table_association" "b" {
 
 #Create EC2 Instance
 resource "aws_instance" "webserver1" {
-  ami                    = "ami-006d3995d3a6b963b"
+  ami                    = "ami-068257025f72f470d"
   instance_type          = "t2.micro"
   availability_zone      = "ap-south-1a"
   vpc_security_group_ids = [aws_security_group.webserver-sg.id]
@@ -153,7 +153,7 @@ resource "aws_instance" "webserver1" {
 }
 
 resource "aws_instance" "webserver2" {
-  ami                    = "ami-006d3995d3a6b963b"
+  ami                    = "ami-068257025f72f470d"
   instance_type          = "t2.micro"
   availability_zone      = "ap-south-1b"
   vpc_security_group_ids = [aws_security_group.webserver-sg.id]
