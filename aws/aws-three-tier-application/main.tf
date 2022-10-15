@@ -12,8 +12,6 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  access_key = "AKIATH22N3IYFSJLHC5K"
-  secret_key = "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"
   region = "ap-south-1"
 }
 
@@ -144,10 +142,19 @@ resource "aws_instance" "webserver1" {
   availability_zone      = "ap-south-1a"
   vpc_security_group_ids = [aws_security_group.webserver-sg.id]
   subnet_id              = aws_subnet.web-subnet-1.id
-  user_data              = file("install_apache.sh")
+  user_data              = <<EOF
+#!/bin/bash
+
+sudo apt -y update
+sudo apt -y install apache2
+sudo su -
+echo "Hello World from $(hostname -f)" > /var/www/html/index.html
+sudo systemctl start apache2
+sudo systemctl enable apache2
+EOF
 
   tags = {
-    Name = "Web Server"
+    Name = "Web Server1"
   }
 
 }
@@ -158,10 +165,19 @@ resource "aws_instance" "webserver2" {
   availability_zone      = "ap-south-1b"
   vpc_security_group_ids = [aws_security_group.webserver-sg.id]
   subnet_id              = aws_subnet.web-subnet-2.id
-  user_data              = file("install_apache.sh")
+  user_data              = <<EOF
+#!/bin/bash
+
+sudo apt -y update
+sudo apt -y install apache2
+sudo su -
+echo "Hello World from $(hostname -f)" > /var/www/html/index.html
+sudo systemctl start apache2
+sudo systemctl enable apache2
+EOF
 
   tags = {
-    Name = "Web Server"
+    Name = "Web Server2"
   }
 
 }
@@ -179,6 +195,7 @@ resource "aws_security_group" "web-sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
 
   egress {
     from_port   = 0
