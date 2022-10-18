@@ -91,19 +91,19 @@ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 #Install helm
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+#curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 #Install a CSI driver
 # Add openebs repo to helm
-helm repo add openebs https://openebs.github.io/charts
+#helm repo add openebs https://openebs.github.io/charts
 
-kubectl create namespace openebs
+#kubectl create namespace openebs
 
-helm --namespace=openebs install openebs openebs/openebs
+#helm --namespace=openebs install openebs openebs/openebs
 
 #Install Wordpress
 # Add bitnami repo to helm
-helm repo add bitnami https://charts.bitnami.com/bitnami
+#helm repo add bitnami https://charts.bitnami.com/bitnami
 
-helm install wordpress bitnami/wordpress \
-  --set=global.storageClass=openebs-hostpath
+#helm install wordpress bitnami/wordpress \
+#  --set=global.storageClass=openebs-hostpath
