@@ -106,5 +106,9 @@ sudo helm install -name openebs --namespace openebs openebs/openebs --create-nam
 # Add bitnami repo to helm
 helm repo add bitnami https://charts.bitnami.com/bitnami
 
+#helm install wordpress bitnami/wordpress \
+#  --set=global.storageClass=openebs-hostpath
+
+
 helm install wordpress bitnami/wordpress \
-  --set=global.storageClass=openebs-hostpath
+  --set=service.type=NodePort  --set=global.storageClass=openebs-hostpath
