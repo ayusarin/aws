@@ -99,7 +99,8 @@ helm repo add openebs https://openebs.github.io/charts
 
 #kubectl create namespace openebs
 
-helm --namespace=openebs install openebs openebs/openebs
+#helm --namespace=openebs install openebs openebs/openebs
+sudo helm install -name openebs --namespace openebs openebs/openebs --create-namespace
 
 #Install Wordpress
 # Add bitnami repo to helm
