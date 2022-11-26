@@ -111,4 +111,4 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 
 helm install wordpress bitnami/wordpress \
-  --set=service.type=NodePort  --set=global.storageClass=openebs-hostpath
+  --set=service.type=NodePort  --set=service.nodePorts.http="31677" --set=global.storageClass=openebs-hostpath
